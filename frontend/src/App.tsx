@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRoots } from "./api/client";
 import RootSelector from "./components/RootSelector";
 import TreemapView from "./components/TreemapView";
+import TreeListView from "./components/TreeListView";
 import { PlotMark, Wordmark } from "./components/Logo";
 
 export default function App() {
@@ -38,7 +39,7 @@ export default function App() {
         {!selectedRoot ? (
           <RootSelector roots={roots ?? []} onSelect={(path) => setSelectedRoot(path)} />
         ) : (
-          <TreemapView rootPath={selectedRoot} />
+          <TreeListView rootPath={selectedRoot} />
         )}
       </main>
     </div>

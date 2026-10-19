@@ -1,5 +1,5 @@
 # Stage 1: Build frontend
-FROM node:20-alpine AS frontend-build
+FROM node:26-trixie AS frontend-build
 WORKDIR /build
 COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm install
@@ -7,7 +7,7 @@ COPY frontend/ .
 RUN npm run build
 
 # Stage 2: Production image
-FROM python:3.12-alpine
+FROM python:3.14-slim-trixie
 WORKDIR /app
 
 # Install Python dependencies
@@ -30,3 +30,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+
