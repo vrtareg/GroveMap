@@ -38,6 +38,8 @@ COPY --from=frontend-build /build/dist /app/static
 ENV DATA_ROOT=/data
 ENV SCAN_CACHE_TTL=300
 ENV SCAN_ON_START=true
+ENV SCAN_SKIP_MOUNTS=false
+ENV SCAN_EXCLUDE=
 ENV STATIC_DIR=/app/static
 ENV PORT=8080
 
