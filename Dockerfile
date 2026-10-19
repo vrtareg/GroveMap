@@ -4,7 +4,7 @@ FROM node:26-trixie AS frontend-build
 RUN set -eux; \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    ca-certificates gosu tzdata curl bash iputils-ping wget && \
+    ca-certificates tzdata curl bash iputils-ping wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
@@ -19,7 +19,7 @@ FROM python:3.14-slim-trixie
 RUN set -eux; \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    ca-certificates gosu tzdata curl bash iputils-ping wget && \
+    ca-certificates tzdata curl bash iputils-ping wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
