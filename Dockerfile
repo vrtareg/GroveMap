@@ -1,5 +1,12 @@
 # Stage 1: Build frontend
 FROM node:26-trixie AS frontend-build
+
+RUN set -eux; \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates gosu tzdata curl bash iputils-ping && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /build
 COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm install
@@ -8,6 +15,13 @@ RUN npm run build
 
 # Stage 2: Production image
 FROM python:3.14-slim-trixie
+
+RUN set -eux; \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates gosu tzdata curl bash iputils-ping && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Install Python dependencies
